@@ -1,0 +1,65 @@
+<ion-view title="Manage Rentals/Listings">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <div class="list">
+  
+  	<div class="item item-divider">
+    	Rentals
+  	</div>
+  	
+    <a class="item item-avatar" ng-repeat="pet in pets" href="#/app/profile/{{pet.id}}">
+    	<img src="img/buddy.jpg">
+    	<h2>{{pet.name}}</h2>
+    	<p>Booked: April 9, 3:00-4:00 pm ($15)</p>
+    	<button class="button button-balanced">
+      		<i class="icon ion-ios7-telephone"></i>
+    	</button>
+    	<button class="button button-positive">
+      		<i class="icon ion-ios7-email-outline"></i>
+    	</button>
+    	<button class="button button-assertive" data-ng-click="showConfirm()">
+      		Cancel
+    	</button>
+    </a>
+
+  	<div class="item item-divider">
+    	Listings
+  	</div>
+  	    
+    <a class="item item-avatar" href="#/app/confirmation">
+    	<img src="img/parrot.jpg">
+    	<h2>Sparky</h2>
+    	<p>Rented by Joe: April 10, 3:00-4:00 pm</p>
+    	<button class="button button-balanced">
+      		<i class="icon ion-ios7-telephone"></i>
+    	</button>
+    	<button class="button button-positive">
+      		<i class="icon ion-ios7-email-outline"></i>
+    	</button>
+    	<button class="button button-assertive">
+      		Cancel
+    	</button>    
+    </a>   
+
+    <a class="item item-avatar" href="#/app/confirmation">
+    	<img src="img/parrot.jpg">
+    	<h2>Sparky</h2>
+    	<p>Rented by Bob: April 14, 3:00-4:00 pm</p>
+    	<button class="button button-balanced">
+      		<i class="icon ion-ios7-telephone"></i>
+    	</button>
+    	<button class="button button-positive">
+      		<i class="icon ion-ios7-email-outline"></i>
+    	</button>
+    	<button class="button button-assertive">
+      		Cancel
+    	</button>    
+    </a>
+
+   
+    
+    </div>
+  </ion-content>
+</ion-view>

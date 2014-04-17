@@ -1,0 +1,15 @@
+/* Empty. Add your own CSS if you like */
+
+.inside {
+list-style-position:inside;
+}
+
+.login {
+background:url(../img/dog_dog_blur1.jpg);
+background-size:100% 100%;
+background-repeat:no-repeat;
+}
+
+#login {
+	opacity:0.5;
+}

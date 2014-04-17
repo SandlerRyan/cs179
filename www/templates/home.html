@@ -1,0 +1,25 @@
+<ion-view title="Available Pets">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  
+  <ion-content class="has-header">
+  	
+	 <button class="button button-block button-positive" onclick="location.href='/www/#/app/filter'">
+  		Filter
+	</button> 
+
+
+    <div class="list">
+
+	    <a class="item item-thumbnail-left" ng-repeat="(name,pet) in pets" href="#/app/profile/{{name}}">
+	      <img ng-src="img/buddy.jpg">
+	      <h2>{{pet.name}}</h2>
+	      <p>{{pet.breed}} <br>Age: {{pet.age}}</p>
+	      <p>{{pet.distance}} miles away</p>
+		</a>
+
+	</div>
+
+  </ion-content>
+</ion-view>
