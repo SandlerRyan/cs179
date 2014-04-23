@@ -138,6 +138,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
         }
       }
     })
+
+     .state('app.list2', {
+      url: "/list2",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/list2.html",
+          controller: "List2Ctrl"
+        }
+      }
+    })
     ;
 
   // if none of the above states are matched, use this as the fallback

@@ -48,11 +48,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     $scope.dt = null;
   };
 
-  //Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
   $scope.toggleMin = function() {
     $scope.minDate = ( $scope.minDate ) ? null : new Date();
   };
@@ -115,6 +110,12 @@ $scope.shouldDateBeDisabled = function(date, mode) {
     $location.path("/app/addtimes/" + id);
   }
 })
+
+.controller('List2Ctrl', function($scope) {
+// $('#reservation').daterangepicker({ startDate: '2014-03-05', endDate: '2014-03-06' });
+//   });
+})
+
 
 /*
 .controller('TimeCtrl', function($scope, $firebase, $stateParams) {
