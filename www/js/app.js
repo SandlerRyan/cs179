@@ -97,7 +97,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       }
     })
     .state('app.book', {
-      url: "/book",
+      url: "/book/:petId",
       views: {
         'menuContent' :{
           templateUrl: "templates/book.html",

@@ -5,16 +5,16 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
 
 //todo- send each pet's name to scope
 .controller('PetsCtrl', function($scope, $firebase) {
-	var petRef = new Firebase("https://petaway.firebaseio.com/Available_pets");
+	var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 	$scope.pets = $firebase(petRef);
 
 })
 
 //to-do: make it go to actual stateParams
 .controller('PetCtrl', function($scope, $firebase, $stateParams) {
-  console.log($stateParams);
-  var petRef = new Firebase("https://petaway.firebaseio.com/Available_pets/1");
+  var petRef = new Firebase("https://petaway.firebaseio.com/Pets/" + $stateParams.petId);
   $scope.pet = $firebase(petRef);
+  $scope.petId = $stateParams.petId;
 
 })
 
@@ -105,7 +105,7 @@ $scope.shouldDateBeDisabled = function(date, mode) {
 
   $scope.types = ["dog", "cat", "bird", "monkey", "bunny", "other"];
 
-  var breedsRef = new Firebase("https://petaway.firebaseio.com/Available_pets");
+  var breedsRef = new Firebase("https://petaway.firebaseio.com/Pets");
   $scope.breeds = $firebase(breedsRef);
 
   $scope.newPet = function(pet) {

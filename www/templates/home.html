@@ -12,7 +12,7 @@
 
     <div class="list">
 
-	    <a class="item item-thumbnail-left" ng-repeat="(name,pet) in pets" href="#/app/profile/{{name}}">
+	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pets" href="#/app/profile/{{id}}">
 	      <img ng-src="img/buddy.jpg">
 	      <h2>{{pet.name}}</h2>
 	      <p>{{pet.breed}} <br>Age: {{pet.age}}</p>
