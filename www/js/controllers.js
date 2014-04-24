@@ -121,11 +121,11 @@ $scope.shouldDateBeDisabled = function(date, mode) {
     var d = moment().add('days',i).calendar();
     
     var time = [];
-    if(i === 0){
+    if(i == 0){
       var left = moment().endOf('day').fromNow();
       for(var j = 0; j<left;j++){
-        // var t = moment().hour();
-        // time[j] = moment(now).format('hA');
+        var t = moment().hour();
+        time[j] = moment(t+j).format('hA');
       }
     }else {
       for(var j = 0;j<24;j++){
