@@ -37,6 +37,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       }
     })
 
+    .state('app.filtered', {
+      url: "/filtered/type/:type/cost/:cost",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home.html",
+          controller: 'FiltedCtrl'
+        }
+      }
+    })
+
     .state('app.list', {
       url: "/list",
       views: {
@@ -156,17 +166,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       url: "/filter",
       views: {
         'menuContent' :{
-          templateUrl: "templates/filter.html"
-        }
-      }
-    })
-
-     .state('app.list2', {
-      url: "/list2",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/list2.html",
-          controller: "List2Ctrl"
+          templateUrl: "templates/filter.html",
+          controller: 'FiltCtrl'
         }
       }
     })

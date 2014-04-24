@@ -10,7 +10,7 @@
 		<div class="input-label">
 		  Animal Type
 		</div>
-		<select>
+		<select ng-model='type'>
 		  <option selected>All</option>
 		  <option>Dog</option>
 		  <option>Cat</option>
@@ -19,39 +19,22 @@
 		</select>
 
 	  </div>
+	
 	<div class="item item-input item-select">
 
 		<div class="input-label">
-		  Breed
+		  Cost (per hour)
 		</div>
-		<select>
+		<select ng-model='cost'>
 		  <option selected>All</option>
-		  <option>Dog</option>
-		  <option>Cat</option>
-		  <option>Bird</option>
-		  <option>Other</option>
+		  <option><$10</option>
+		  <option>$10-20</option>
+		  <option>$20-30</option>
+		  <option>$30+</option>
 		</select>
 
 	  	</div>
 	</div>
-
-	<div class="item item-input item-select">
-
-		<div class="input-label">
-		  Cost
-		</div>
-		<select>
-		  <option selected>All</option>
-		  <option>Dog</option>
-		  <option>Cat</option>
-		  <option>Bird</option>
-		  <option>Other</option>
-		</select>
-
-	  	</div>
-	</div>
-
-	<br>
 
 	<div class="item item-input item-select">
 
@@ -60,10 +43,10 @@
 		</div>
 		<select>
 		  <option selected>All</option>
-		  <option>Dog</option>
-		  <option>Cat</option>
-		  <option>Bird</option>
-		  <option>Other</option>
+		  <option> < 5 miles </option>
+		  <option>5-10 miles</option>
+		  <option>10-15 miles</option>
+		  <option>15+ miles</option>
 		</select>
 
 	  	</div>
@@ -79,7 +62,7 @@
 			</div>
 		</label>
 	</li>
-	<button class="button button-block button-positive" onclick="location.href='/www/#/app/home'">
+	<button class="button button-block button-positive" ng-click="filter(type, cost)">
 	  Filter
 	</button>
 

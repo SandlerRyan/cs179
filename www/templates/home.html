@@ -5,14 +5,15 @@
   
   <ion-content class="has-header">
   	
-	 <button class="button button-block button-positive" onclick="location.href='/www/#/app/filter'">
+	 <button class="button button-block button-positive" onclick="location.href='#/app/filter'">
   		Filter
 	</button> 
 
 
     <div class="list">
 
-	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pets" href="#/app/profile/{{id}}">
+	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pets | 
+	    filter:{type: stype, price: scost}" href="#/app/profile/{{id}}">
 	      <img ng-src="img/buddy.jpg">
 	      <h2>{{pet.name}}</h2>
 	      <p>{{pet.breed}} <br>Age: {{pet.age}}</p>

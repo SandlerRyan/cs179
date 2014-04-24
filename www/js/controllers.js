@@ -3,10 +3,25 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
 .controller('AppCtrl', function($scope) {
 })
 
-//todo- send each pet's name to scope
+
 .controller('PetsCtrl', function($scope, $firebase) {
 	var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 	$scope.pets = $firebase(petRef);
+
+})
+.controller('FiltCtrl', function($scope, $firebase, $stateParams) {
+ 
+  $scope.filter = function($type, $cost) {
+    $location.path("/app/filtered/type" + $type + "/cost/" + $cost);
+  }
+})
+
+.controller('FiltedCtrl', function($scope, $firebase, $stateParams) {
+  var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
+  $scope.pets = $firebase(petRef);
+
+  $scope.stype = $stateParams[0];
+  $scope.scost = $stateParams[1];
 
 })
 
