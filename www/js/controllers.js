@@ -3,10 +3,25 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
 .controller('AppCtrl', function($scope) {
 })
 
-//todo- send each pet's name to scope
+
 .controller('PetsCtrl', function($scope, $firebase) {
 	var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 	$scope.pets = $firebase(petRef);
+
+})
+.controller('FiltCtrl', function($scope, $firebase, $stateParams) {
+ 
+  $scope.filter = function($type, $cost) {
+    $location.path("/app/filtered/type" + $type + "/cost/" + $cost);
+  }
+})
+
+.controller('FiltedCtrl', function($scope, $firebase, $stateParams) {
+  var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
+  $scope.pets = $firebase(petRef);
+
+  $scope.stype = $stateParams[0];
+  $scope.scost = $stateParams[1];
 
 })
 
@@ -14,8 +29,12 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
 .controller('PetCtrl', function($scope, $firebase, $stateParams) {
   var petRef = new Firebase("https://petaway.firebaseio.com/Pets/" + $stateParams.petId);
   $scope.pet = $firebase(petRef);
-  $scope.petId = $stateParams.petId;
+  $scope.pet.pet_id = $stateParams.petId;
 
+  //wtf wont go to book...
+  $scope.book = function() {
+    $location.path("/app/book/");
+  }
 })
 
 .controller('ManageCtrl', function($scope, $ionicPopup) {
@@ -33,10 +52,27 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
       };    
 })
 
-.controller('DateCtrl', function($scope) {
+
+
+.controller('DateCtrl', function($scope, $firebase, $stateParams, dates) {
+   $scope.shouldDateBeDisabled = function(date, mode) {
+      // your own logic to determine if a date should be disabled
+      date1 = new Date(date);
+      for(var i=0; i < dates.length; i++){
+        console.log(dates[0]);
+        var date2 = new Date(dates[i]);
+        if (date1.getTime() === date2.getTime()) {
+
+          return false;
+        }
+      }
+      return true;
+    };
+
+  
   $scope.today = function() {
     $scope.dt = new Date();
-  };
+  }
   $scope.today();
 
   $scope.showWeeks = false;
@@ -71,27 +107,12 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
   $scope.format = $scope.formats[2];
 
-var dates = [new Date("04/19/2014"), new Date("04/22/2014"), new Date("05/11/2014")];
-// var arrayOfDatesToDisable = [...];
-$scope.shouldDateBeDisabled = function(date, mode) {
-  // your own logic to determine if a date should be disabled
-  date1 = new Date(date);
-  for(var i=0; i<dates.length;i++){
-    if (date1.getTime() === dates[i].getTime()) {
-    return true;
-    }
+
+  $scope.show = function($date) {
+    $scope.times = ["1800", "2000"];
   }
-
-  // if (dateIsInArray(date,arrayOfDatesToDisable) {
-  //   return true;
-  // }
-
-  return false;
-};
-
-})
      
-
+})
 
 .controller('ListCtrl', function($scope, $firebase, $location) {
 
@@ -103,6 +124,12 @@ $scope.shouldDateBeDisabled = function(date, mode) {
 
   $scope.types = ["dog", "cat", "bird", "monkey", "bunny", "other"];
 
+
+  //var breedsRef = new Firebase("https://petaway.firebaseio.com/Pets");
+  //$scope.breeds = $firebase(breedsRef);
+
+  var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
+
   $scope.newPet = function(pet) {
     var ref = petRef.push(pet);
     
@@ -110,6 +137,7 @@ $scope.shouldDateBeDisabled = function(date, mode) {
     $location.path("/app/addtimes/" + id);
   }
 })
+
 
 .controller('List2Ctrl', function($scope) {
   $scope.oneAtATime = true;
@@ -153,12 +181,12 @@ $scope.shouldDateBeDisabled = function(date, mode) {
 
 /*
 .controller('TimeCtrl', function($scope, $firebase, $stateParams) {
-  var petRef = new Firebase("https://petaway.firebaseio.com/Available_pets" + $stateParams);
-  $scope.pets = $firebase(petRef);
+  var timesRef = new Firebase("https://petaway.firebaseio.com/Pet_Availability");
 
-  $scope.newPet = function(pet) {
-    var ref = $scope.pets.$add(pet);
-    $location.path("/#/app/addtimes");
+  $scope.newTimes = function() {
+    var ref = timesRef.push({'pet_id': $stateParams.petId, 'date': '05/04/2014', 'start_time': '1100', 'end_time': '1400'});
+    $location.path("/app/confirmation_list/" + $stateParams.petId);
   }
+
 })
 */

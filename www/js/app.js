@@ -37,6 +37,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       }
     })
 
+    .state('app.filtered', {
+      url: "/filtered/type/:type/cost/:cost",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/home.html",
+          controller: 'FiltedCtrl'
+        }
+      }
+    })
+
     .state('app.list', {
       url: "/list",
       views: {
@@ -89,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       }
     })
     .state('app.confirmation_list', {
-      url: "/confirmation_list",
+      url: "/confirmation_list/:petId",
       views: {
         'menuContent' :{
           templateUrl: "templates/confirmation_list.html"
@@ -101,9 +111,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       views: {
         'menuContent' :{
           templateUrl: "templates/book.html",
-          controller:"DateCtrl"
+          controller:"DateCtrl",
+          resolve: {
+            dates: function($stateParams){
+              var dates = new Array();
+              //pull pet availability from database
+              var availRef = new Firebase("https://petaway.firebaseio.com/Pet_Availability");
+              
+              availRef.once('value', function(dataSnapshot) {
+                snap = dataSnapshot;
+              });
+
+              snap.forEach(function(childSnapshot) {
+                  var pet = childSnapshot.val();
+                  if (pet.pet_id == $stateParams.petId) {
+                    var date = pet.date;
+                    dates.push(date);
+                  }
+                });
+              return dates;
+              }
+
+            }
+          }
         }
-      }
+      
     })
     .state('app.AddTimes', {
       url: "/addtimes/:petId",
@@ -134,17 +166,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       url: "/filter",
       views: {
         'menuContent' :{
-          templateUrl: "templates/filter.html"
-        }
-      }
-    })
-
-     .state('app.list2', {
-      url: "/list2",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/list2.html",
-          controller: "List2Ctrl"
+          templateUrl: "templates/filter.html",
+          controller: 'FiltCtrl'
         }
       }
     })
