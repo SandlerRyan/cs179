@@ -103,9 +103,6 @@ $scope.shouldDateBeDisabled = function(date, mode) {
 
   $scope.types = ["dog", "cat", "bird", "monkey", "bunny", "other"];
 
-  var breedsRef = new Firebase("https://petaway.firebaseio.com/Pets");
-  $scope.breeds = $firebase(breedsRef);
-
   $scope.newPet = function(pet) {
     var ref = petRef.push(pet);
     
