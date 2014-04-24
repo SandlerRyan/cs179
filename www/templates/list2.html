@@ -9,19 +9,19 @@
 
   <li class="item item-toggle" ng-repeat="time in date.times">
      <label class="toggle">
-       <input type="checkbox" id="{{date.time}}">
+       <input type="checkbox">
        <div class="track">
          <div class="handle"></div>
        </div>
      </label>
 			{{time}}
       </li>
-
-  
-
 </ul>
     </accordion-group>
   </accordion>
+   <button class="button button-full button-positive" onclick="location.href='/#/app/confirmation_list'">
+		 List Pet!
+	  	</button>
 
   </ion-content>
 </ion-view>

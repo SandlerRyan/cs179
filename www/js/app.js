@@ -99,7 +99,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       }
     })
     .state('app.confirmation_list', {
-      url: "/confirmation_list/:petId",
+      url: "/confirmation_list",
       views: {
         'menuContent' :{
           templateUrl: "templates/confirmation_list.html"
@@ -168,6 +168,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
         'menuContent' :{
           templateUrl: "templates/filter.html",
           controller: 'FiltCtrl'
+        }
+      }
+    })
+    .state('app.list2', {
+      url: "/list2/:petId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/list2.html",
+          controller: 'List2Ctrl'
         }
       }
     })
