@@ -70,11 +70,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     $scope.dt = null;
   };
 
-  //Disable weekend selection
-  $scope.disabled = function(date, mode) {
-    return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-  };
-
   $scope.toggleMin = function() {
     $scope.minDate = ( $scope.minDate ) ? null : new Date();
   };
@@ -85,7 +80,10 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     $event.stopPropagation();
 
     $scope.opened = true;
+    $scop.today();
   };
+
+  $scope.visible = "display:none"
 
   $scope.dateOptions = {
     'year-format': "'yy'",
@@ -93,7 +91,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   };
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-  $scope.format = $scope.formats[0];
+  $scope.format = $scope.formats[2];
 
      
 })
@@ -107,6 +105,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   //$scope.types = $firebase(typesRef);
 
   $scope.types = ["dog", "cat", "bird", "monkey", "bunny", "other"];
+
 
   //var breedsRef = new Firebase("https://petaway.firebaseio.com/Pets");
   //$scope.breeds = $firebase(breedsRef);
@@ -122,6 +121,48 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
 })
 
 
+.controller('List2Ctrl', function($scope) {
+  $scope.oneAtATime = true;
+
+  
+
+  $scope.dates = [];
+  for(var i =0;i<7;i++){
+    var d = moment().add('days',i).calendar();
+    
+    var time = [];
+    if(i === 0){
+      var left = moment().endOf('day').fromNow();
+      for(var j = 0; j<left;j++){
+        // var t = moment().hour();
+        // time[j] = moment(now).format('hA');
+      }
+    }else {
+      for(var j = 0;j<24;j++){
+        var t = moment().hour(j);
+        time[j] = moment(t).format('hA');
+      }
+    }
+
+    $scope.dates[i] = 
+    { day: d,
+      times:time
+    };
+  }
+
+
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+})
+
+
+/*
+>>>>>>> 719954e1f24ba5fc36c70fd206bbdb1744c373c1
 .controller('TimeCtrl', function($scope, $firebase, $stateParams) {
   var timesRef = new Firebase("https://petaway.firebaseio.com/Pet_Availability");
 

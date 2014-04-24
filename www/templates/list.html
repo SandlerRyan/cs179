@@ -21,18 +21,10 @@
 		  <option>Other</option>
 		</select>
 	  </div>
-	  <div class="item item-input item-select">
-		<div class="input-label">
-		  Breed
-		</div>
-		<select ng-model="pet.breed">
-		  <option selected>All</option>
-		  <option>Labrador</option>
-		  <option>Bulldog</option>
-		  <option>Chiwawa</option>
-		  <option>Other</option>
-		</select>
-	  </div>
+	  <label class="item item-input">
+		<span class="input-label">Breed</span>
+		<input type="text" ng-model="pet.breed">
+	  </label>
 	  <label class="item item-input">
 		<span class="input-label">Age</span>
 		<input type="text" ng-model="pet.age">
