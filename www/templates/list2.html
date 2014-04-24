@@ -3,19 +3,22 @@
     <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
+  <accordion close-others="oneAtATime">
+    <accordion-group heading="{{date.day}}" ng-repeat="date in dates">
+    <ul class="list">
 
-  <div class="well">
+  <li class="item item-checkbox" ng-repeat="time in date.times">
+     <label class="checkbox">
+       <input type="checkbox">
+     </label>
+			{{time}}
+      </li>
 
-               <form class="form-horizontal">
-                 <fieldset>
-                  <div class="control-group">
-                    <div class="controls">
-                     <div class="input-prepend input-group">
-                       <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span><input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="03/18/2013 - 03/23/2013" /> 
-                     </div>
-                    </div>
-                  </div>
-                 </fieldset>
-               </form>
+  
+
+</ul>
+    </accordion-group>
+  </accordion>
+
   </ion-content>
 </ion-view>

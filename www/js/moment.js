@@ -738,11 +738,11 @@
         },
 
         _calendar : {
-            sameDay : '[Today at] LT',
-            nextDay : '[Tomorrow at] LT',
-            nextWeek : 'dddd [at] LT',
-            lastDay : '[Yesterday at] LT',
-            lastWeek : '[Last] dddd [at] LT',
+            sameDay : '[Today]',
+            nextDay : '[Tomorrow]',
+            nextWeek : 'dddd',
+            lastDay : '[Yesterday]',
+            lastWeek : '[Last] dddd',
             sameElse : 'L'
         },
         calendar : function (key, mom) {

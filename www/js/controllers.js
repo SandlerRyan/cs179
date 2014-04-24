@@ -58,7 +58,10 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     $event.stopPropagation();
 
     $scope.opened = true;
+    $scop.today();
   };
+
+  $scope.visible = "display:none"
 
   $scope.dateOptions = {
     'year-format': "'yy'",
@@ -66,7 +69,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   };
 
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-  $scope.format = $scope.formats[0];
+  $scope.format = $scope.formats[2];
 
 var dates = [new Date("04/19/2014"), new Date("04/22/2014"), new Date("05/11/2014")];
 // var arrayOfDatesToDisable = [...];
@@ -112,8 +115,42 @@ $scope.shouldDateBeDisabled = function(date, mode) {
 })
 
 .controller('List2Ctrl', function($scope) {
-// $('#reservation').daterangepicker({ startDate: '2014-03-05', endDate: '2014-03-06' });
-//   });
+  $scope.oneAtATime = true;
+
+  
+
+  $scope.dates = [];
+  for(var i =0;i<7;i++){
+    var d = moment().add('days',i).calendar();
+    
+    var time = [];
+    if(i === 0){
+      var left = moment().endOf('day').fromNow();
+      for(var j = 0; j<left;j++){
+        // var t = moment().hour();
+        // time[j] = moment(now).format('hA');
+      }
+    }else {
+      for(var j = 0;j<24;j++){
+        var t = moment().hour(j);
+        time[j] = moment(t).format('hA');
+      }
+    }
+
+    $scope.dates[i] = 
+    { day: d,
+      times:time
+    };
+  }
+
+
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
 })
 
 
