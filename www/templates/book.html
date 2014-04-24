@@ -11,40 +11,27 @@
 	  </div>
 	  <pre><em>{{dt | date:'fullDate' }}</em></pre>
     <div style="display:inline-block; min-height:290px;">
-      <div class="well well-sm" ng-model="dt">
-          <datepicker min="minDate" show-weeks="showWeeks" date-disabled="shouldDateBeDisabled(date,mode)"></datepicker>
+      <div class="well well-sm" ng-model="dt" >
+          <datepicker min="minDate" show-weeks="showWeeks" date-disabled="shouldDateBeDisabled(date,mode)" ng-model="date" ng-click="show(date)"></datepicker>
       </div>
     </div>
 	  <div class="item item-divider">
-	    Select a Time:
+	    Select a Time: {{choice.date | date:'MM/dd/yyyy'}}
 	  </div>
 	  <!-- list of available times -->
 	  <div class="list">
-
-		  <label class="item item-radio">
+	  		
+		  <label ng-repeat="time in times" class="item item-radio">
 		    <input type="radio" name="times">
 		    <div class="item-content">
-		      3-4 pm
+		      {{time}}
 		    </div>
 		    <i class="radio-icon ion-checkmark"></i>
 		  </label>
-		  <label class="item item-radio">
-		    <input type="radio" name="times">
-		    <div class="item-content">
-		      4-5 pm 
-		    </div>
-		    <i class="radio-icon ion-checkmark"></i>
-		  </label>
-		  <label class="item item-radio">
-		    <input type="radio" name="times">
-		    <div class="item-content">
-		      7-8 pm
-		    </div>
-		    <i class="radio-icon ion-checkmark"></i>
-		  </label>
+		  
 	   </div>
 	   <button class="button button-full button-positive" onclick="location.href='/#/app/confirmation_book'">
-		  Book Now
+		  Book Now 
 	  	</button>
 	  </div>
   </div>

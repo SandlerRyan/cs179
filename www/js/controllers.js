@@ -51,7 +51,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
           return false;
         }
       }
-
       return true;
     };
 
@@ -93,6 +92,10 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
   $scope.format = $scope.formats[2];
 
+
+  $scope.show = function($date) {
+    $scope.times = ["1800", "2000"];
+  }
      
 })
 
@@ -162,7 +165,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
 
 
 /*
->>>>>>> 719954e1f24ba5fc36c70fd206bbdb1744c373c1
 .controller('TimeCtrl', function($scope, $firebase, $stateParams) {
   var timesRef = new Firebase("https://petaway.firebaseio.com/Pet_Availability");
 
@@ -172,4 +174,4 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   }
 
 })
-
+*/
