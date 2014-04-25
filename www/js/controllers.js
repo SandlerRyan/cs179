@@ -94,7 +94,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     $event.stopPropagation();
 
     $scope.opened = true;
-    $scop.today();
   };
 
   $scope.visible = "display:none"
@@ -134,7 +133,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     var ref = petRef.push(pet);
     
     var id = ref.name()
-    $location.path("/app/addtimes/" + id);
+    $location.path("/app/list2/" + id);
   }
 })
 
@@ -147,18 +146,18 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   $scope.dates = [];
   for(var i =0;i<7;i++){
     var d = moment().add('days',i).calendar();
-    
     var time = [];
-    if(i === 0){
-      var left = moment().endOf('day').fromNow();
-      for(var j = 0; j<left;j++){
-        // var t = moment().hour();
-        // time[j] = moment(now).format('hA');
-      }
-    }else {
-      for(var j = 0;j<24;j++){
+    var now = moment().hour() + 1;
+    if(i == 0){
+      for(var j = now; j<22;j++){
         var t = moment().hour(j);
-        time[j] = moment(t).format('hA');
+        time[j-now] = moment(t).format('hA');
+      }
+      console.log(time);
+    }else {
+      for(var j = 9;j<22;j++){
+        var t = moment().hour(j);
+        time[j-9] = moment(t).format('hA');
       }
     }
 
@@ -167,15 +166,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
       times:time
     };
   }
-
-
-
-  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
-
-  $scope.addItem = function() {
-    var newItemNo = $scope.items.length + 1;
-    $scope.items.push('Item ' + newItemNo);
-  };
 })
 
 
