@@ -56,6 +56,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
         }
       }
     })
+
+    .state('app.addpet', {
+      url: "/addpet",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/addpet.html",
+          controller: 'ListCtrl'
+        }
+      }
+    })
+
+    .state('app.pets', {
+      url: "/pets",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/pets.html",
+          controller: "PetsCtrl"
+        }
+      }
+    })
     .state('app.settings', {
       url: "/settings",
       views: {
@@ -69,6 +89,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       views: {
         'menuContent' :{
           templateUrl: "templates/manage.html",
+          controller: 'PetsCtrl'
+        }
+      }
+    })
+    .state('app.rentals', {
+      url: "/rentals",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/rentals.html",
           controller: 'PetsCtrl'
         }
       }

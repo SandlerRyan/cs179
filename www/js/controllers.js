@@ -135,6 +135,13 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
     var id = ref.name()
     $location.path("/app/list2/" + id);
   }
+
+   $scope.newPet2 = function(pet) {
+    var ref = petRef.push(pet);
+    
+    var id = ref.name()
+    $location.path("/app/pets");
+  }
 })
 
 
