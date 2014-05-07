@@ -1,0 +1,19 @@
+<ion-view title="Your Pets">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right"class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <div class="list">
+
+<a class="item item-avatar" ng-repeat="pet in pets" href="#/app/profile/{{pet.id}}">
+    	<img src="img/buddy.jpg">
+    	<h2>{{pet.name}}</h2>
+    </a>
+
+     <button class="button button-block button-positive" onclick="location.href='#/app/addpet'">
+      Add Pet
+  </button> 
+
+    </div>
+  </ion-content>
+</ion-view>
