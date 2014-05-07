@@ -153,7 +153,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
         var t = moment().hour(j);
         time[j-now] = moment(t).format('hA');
       }
-      console.log(time);
     }else {
       for(var j = 9;j<22;j++){
         var t = moment().hour(j);
