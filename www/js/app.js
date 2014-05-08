@@ -102,6 +102,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
         }
       }
     })
+
+    .state('app.rate_pet', {
+      url: "/rate_pet",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/rate_pet.html",
+          controller: 'RateCtrl'
+        }
+      }
+    })
+
+    .state('app.listings', {
+      url: "/listings",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/listings.html",
+          controller: 'PetsCtrl'
+        }
+      }
+    })
+    
     .state('app.logout', {
       url: "/logout",
       views: {
