@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 
 
-angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootstrap'])
+angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootstrap', 'ngCookies'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -38,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
     })
 
     .state('app.filtered', {
-      url: "/filtered/type/:type/cost/:cost",
+      url: "/filtered/type/:type/",
       views: {
         'menuContent' :{
           templateUrl: "templates/home.html",

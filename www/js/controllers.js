@@ -1,39 +1,75 @@
-angular.module('starter.controllers', ["firebase","ui.bootstrap"])
+angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
 
 .controller('AppCtrl', function($scope) {
 })
 
+//filter for home page
+// .filter('pet_filter', function($cookieStore) {
+//   return function (input) {
+//     console.log(input.type);
+//     $filter_type = $cookieStore.get('filter_type');
+//     if ($filter_type) {
+//       if (input.type===$filter_type) {
+//       return input;
+//       }
+//     }
+//     else{
+//       return input;
+//     }
+    
+//   };
+// })
 
-.controller('PetsCtrl', function($scope, $firebase) {
+.controller('PetsCtrl', function($scope, $firebase, $cookieStore) {
 	var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 	$scope.pets = $firebase(petRef);
 
+  $scope.pet_filter = function(pets) {
+    $filter_type = $cookieStore.get('filter_type');
+    var result = {};
+    if ($filter_type) {
+      angular.forEach(pets, function(value,key) {
+        if (value.type == $filter_type.toLowerCase()) {
+            result[key] = value;
+        }
+      });
+      return result;
+    }
+    else{
+      return pets;
+    }
+
+  }
+
 })
-.controller('FiltCtrl', function($scope, $firebase, $stateParams) {
+.controller('FiltCtrl', function($scope, $firebase, $stateParams, $location, $cookieStore) {
  
-  $scope.filter = function($type, $cost) {
-    $location.path("/app/filtered/type" + $type + "/cost/" + $cost);
+  $scope.filter = function(type) {
+    $cookieStore.put('filter_type', type);
+    $location.path("/app/home");
   }
 })
 
-.controller('FiltedCtrl', function($scope, $firebase, $stateParams) {
-  var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
-  $scope.pets = $firebase(petRef);
+// .controller('FiltedCtrl', function($scope, $firebase, $stateParams) {
+//   var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
+//   $scope.pets = $firebase(petRef);
 
-  $scope.stype = $stateParams[0];
-  $scope.scost = $stateParams[1];
+//   $scope.stype = $stateParams[0];
 
-})
+// })
 
 //to-do: make it go to actual stateParams
-.controller('PetCtrl', function($scope, $firebase, $stateParams) {
+.controller('PetCtrl', function($scope, $firebase, $stateParams, $location) {
   var petRef = new Firebase("https://petaway.firebaseio.com/Pets/" + $stateParams.petId);
   $scope.pet = $firebase(petRef);
-  $scope.pet.pet_id = $stateParams.petId;
 
-  //wtf wont go to book...
+  // var id = ref.name()
+  // $location.path("/app/list2/" + id);
+
+
   $scope.book = function() {
-    $location.path("/app/book/");
+    console.log('hello');
+    $location.path("/app/book/1");
   }
 })
 
@@ -130,7 +166,12 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 
   $scope.newPet = function(pet) {
-    var ref = petRef.push(pet);
+    if (pet.name) {
+      var ref = petRef.push(pet);
+    }
+    else{
+      alert("Please fill in all required");
+    }
     
     var id = ref.name()
     $location.path("/app/list2/" + id);

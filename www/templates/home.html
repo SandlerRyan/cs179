@@ -12,9 +12,8 @@
 
     <div class="list">
 
-	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pets | 
-	    filter:{type: stype, price: scost}" href="#/app/profile/{{id}}">
-	      <img ng-src="img/buddy.jpg">
+	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pet_filter(pets)" href="#/app/profile/{{id}}">
+	      <img ng-src={{pet.img_url}} alt="no image">
 	      <h2>{{pet.name}}</h2>
 	      <p>{{pet.breed}} <br>Age: {{pet.age}}</p>
 	      <p>{{pet.distance}} miles away</p>
