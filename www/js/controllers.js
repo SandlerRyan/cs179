@@ -35,6 +35,12 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   $scope.book = function() {
     $location.path("/app/book/");
   }
+
+  $scope.tabs = [
+    { title:'Dynamic Title 1', content:'Dynamic content 1' },
+    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+  ];
+
 })
 
 .controller('ManageCtrl', function($scope, $ionicPopup) {
@@ -113,6 +119,10 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
      
 })
 
+.controller('RateCtrl', function($scope){
+  $scope.rate=0;
+}
+
 .controller('ListCtrl', function($scope, $firebase, $location) {
 
   //var petRef = new Firebase("https://petaway.firebaseio.com/Available_pets");
@@ -128,6 +138,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap"])
   //$scope.breeds = $firebase(breedsRef);
 
   var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
+  $scope.pets = $firebase(petRef);
 
   $scope.newPet = function(pet) {
     var ref = petRef.push(pet);
