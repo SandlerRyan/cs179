@@ -1,8 +1,78 @@
-<ion-view title="Browse">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<ion-view title="Settings">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <h1>Settings</h1>
-  </ion-content>
+	<ul class="list">
+		<div class="item item-divider">
+    		General
+  		</div>
+		<li class="item item-toggle">
+		 	Enable Push Notifications
+		 	<label class="toggle toggle-balanced">
+		   		<input type="checkbox">
+		   		<div class="track">
+			 		<div class="handle"></div>
+		   		</div>
+		 	</label>
+		 </li>
+		 <li class="item item-toggle">
+		 	Send Weekly Emails
+		 	<label class="toggle toggle-balanced">
+		   		<input type="checkbox">
+		   		<div class="track">
+			 		<div class="handle"></div>
+		   		</div>
+		 	</label>
+	  	</li>
+		
+	</ul>
+	<div class="list">
+
+  		<div class="item item-divider">
+    		Account
+  		</div>
+  		<a class="item item-icon-left" href="#">
+			<i class="icon ion-person"></i>
+			Name
+			<span class="item-note">
+				John Doe
+			</span>
+	  	</a>
+  		<a class="item item-icon-left" href="#">
+			<i class="icon ion-ios7-telephone"></i>
+			Phone Number
+			<span class="item-note">
+				123-456-7890
+			</span>
+	  	</a>
+  		<a class="item item-icon-left" href="#">
+			<i class="icon ion-ios7-email"></i>
+			Email
+			<span class="item-note">
+				johndoe@gmail.com
+			</span>
+	  	</a>
+  		<a class="item item-icon-left" href="#">
+			<i class="icon ion-card"></i>
+			Credit Card
+			<span class="item-note">
+				************1234
+			</span>
+	  	</a>
+  		<a class="item item-icon-left" href="#">
+			<i class="icon ion-social-facebook"></i>
+			Facebook
+			<span class="item-note">
+				Verified
+			</span>
+	  	</a>
+  		<a class="item item-icon-left" href="#">
+			<i class="icon ion-social-twitter"></i>
+			Twitter
+			<span class="item-note">
+				@petlover
+			</span>
+	  	</a>
+  	</div>
 </ion-view>

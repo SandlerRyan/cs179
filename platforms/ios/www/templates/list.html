@@ -1,8 +1,70 @@
-<ion-view title="Browse">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left"class="button button-icon icon ion-navicon"></button>
+<ion-view title="List Pet">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-content class="has-header">
-    <h1>List a Pet</h1>
+  <tabset>
+  	<tab heading="List New Pet">
+	<div class="list">
+	  <label class="item item-input">
+		<span class="input-label">Name</span>
+		<input type="text" ng-model="pet.name">
+	  </label>
+	  <div class="item item-input item-select">
+		<div class="input-label">
+		  Animal Type
+		</div>
+		<select required="yes">
+		  <option>Dog</option>
+		  <option>Cat</option>
+		  <option>Bunny</option>
+		  <option>Monkey</option>
+		  <option>Other</option>
+		</select>
+	  </div>
+	  <label class="item item-input">
+		<span class="input-label">Breed</span>
+		<input type="text" ng-model="pet.breed">
+	  </label>
+	  <label class="item item-input">
+		<span class="input-label">Age</span>
+		<input type="text" ng-model="pet.age">
+	  </label>
+	  <label class="item item-input">
+		<span class="input-label">Cost/Hr ($)</span>
+		<input type="text" ng-model="pet.price">
+	  </label>
+	  <label class="item item-input">
+		<span class="input-label">Location</span>
+		<input type="text" ng-model="pet.distance">
+	  </label>
+	  <label class="item item-input">
+		<span class="input-label">Image URL</span>
+		<input type="text" ng-model="pet.distance">
+	  </label>
+	  <br>
+	  <label class="item item-input item-stacked-label">
+    	<span class="input-label">Description</span>
+    	<input type="text" placeholder="Describe your pet's behavior, likes/dislikes, and anything else" ng-model="pet.description">
+ 	  </label>
+	</div>
+	<button class="button button-block button-positive" ng-click="newPet(pet)">
+	  Add Available Times
+	</button>
+</tab>
+<tab heading="Re-List Pet">
+	<div class="list">
+    
+    <a class="item item-avatar" ng-repeat="pet in pets">
+      <img src="img/buddy.jpg">
+      <h2>{{pet.name}}</h2>
+      <p>Rented on April 9, 3:00-4:00 pm ($15)</p>
+      <button class="button button-positive" onclick="location.href='#/app/list2/1'">
+          Re-List
+      </button>
+    </a>
+  </div>
+</tab>
+
   </ion-content>
 </ion-view>

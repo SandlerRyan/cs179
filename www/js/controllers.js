@@ -23,30 +23,126 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
 .controller('PetsCtrl', function($scope, $firebase, $cookieStore) {
 	var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 	$scope.pets = $firebase(petRef);
-  $scope.rate = 3;
+
+
+  //helper functions for the filter
+  function check_type (atype, selected) {
+    if (selected == 'All') {
+      return true
+    }
+    else if (atype == selected.toLowerCase()) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+  //function to filter cost and ratings
+  function cost_in_range (cost, range) {
+    if (range=='All'){
+      return true
+    }
+    else if (range=='<$10'){
+      if (cost < 10) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='$10-20'){
+      if (cost >= 10 && cost < 20) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='$20-30'){
+      if (cost >= 20 && cost < 30) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='$30+'){
+      if (cost >= 30) {
+        return true
+      }
+      else {return false}
+    }
+  }
+
+  //function to filter cost and ratings
+  function rating_in_range (rating, range) {
+    if (range=='All'){
+      return true
+    }
+    else if (range=='1+ stars'){
+      if (rating >= 1) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='2+ stars'){
+      if (rating >= 2) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='3+ stars'){
+      if (rating >= 3) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='4+ stars'){
+      if (rating >= 4) {
+        return true
+      }
+      else {return false}
+    }
+    else if (range=='5 stars'){
+      if (rating == 5) {
+        return true
+      }
+      else {return false}
+    }
+  }
 
   $scope.pet_filter = function(pets) {
     $filter_type = $cookieStore.get('filter_type');
+    $filter_cost = $cookieStore.get('filter_cost');
+    $filter_rating = $cookieStore.get('filter_rating');
     var result = {};
-    if ($filter_type) {
+
       angular.forEach(pets, function(value,key) {
-        if (value.type == $filter_type.toLowerCase()) {
-            result[key] = value;
+        if (check_type(value.type, $filter_type) &&
+          cost_in_range(value.price, $filter_cost) &&
+          rating_in_range(value.rating, $filter_rating)) 
+        {
+          result[key] = value;
         }
       });
       return result;
-    }
-    else{
-      return pets;
-    }
 
   }
 
 })
+
 .controller('FiltCtrl', function($scope, $firebase, $stateParams, $location, $cookieStore) {
- 
-  $scope.filter = function(type) {
+ if($cookieStore.get('filter_type') == null){
+  $cookieStore.put('filter_type', 'All');
+ }
+ if($cookieStore.get('filter_cost') == null){
+  $cookieStore.put('filter_cost', 'All');
+ }
+ if($cookieStore.get('filter_rating') == null){
+  $cookieStore.put('filter_rating', 'All');
+ }
+
+ $scope.type = $cookieStore.get('filter_type');
+ $scope.cost = $cookieStore.get('filter_cost');
+ $scope.rating = $cookieStore.get('filter_rating');
+  $scope.filter = function(type, cost, rating) {
     $cookieStore.put('filter_type', type);
+    $cookieStore.put('filter_cost', cost);
+    $cookieStore.put('filter_rating', rating);
     $location.path("/app/home");
   }
 })
@@ -64,13 +160,10 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   var petRef = new Firebase("https://petaway.firebaseio.com/Pets/" + $stateParams.petId);
   $scope.pet = $firebase(petRef);
 
-  // var id = ref.name()
-  // $location.path("/app/list2/" + id);
-
 
   $scope.book = function() {
     console.log('hello');
-    $location.path("/app/book/1");
+    $location.path("/app/book/" + $stateParams.petId);
   }
 
 })
@@ -151,6 +244,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
      
 })
 
+
 .controller('RateCtrl', function($scope) {
   $scope.rate1 = 0;
   $scope.rateq = 0;
@@ -170,7 +264,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   }
 })
 
-.controller('ListCtrl', function($scope, $firebase, $location) {
+.controller('ListCtrl', function($scope, $firebase, $location, $window) {
 
   //var petRef = new Firebase("https://petaway.firebaseio.com/Available_pets");
   //$scope.pets = $firebase(petRef);
@@ -188,13 +282,15 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   $scope.pets = $firebase(petRef);
 
   $scope.newPet = function(pet) {
-    if (pet.name) {
-      var ref = petRef.push(pet);
-    }
-    else{
-      alert("Please fill in all required");
-    }
+    // if (pet.name == null) {
+    //   $window.alert("Please fill in all required");
+    //   console.log("hello")
+    // }
+    // else{
+    //   var ref = petRef.push(pet);
+    // }
     
+    var ref = petRef.push(pet);
     var id = ref.name()
     $location.path("/app/list2/" + id);
   }
