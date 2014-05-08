@@ -6,18 +6,19 @@
     <div class="list">
 
 <a class="item item-avatar" ng-repeat="pet in pets">
-    	<img src="img/buddy.jpg">
+    	<img ng-src={{pet.img_url}} alt="no image">
     	<h2>{{pet.name}}</h2>
-       <button class="button button-positive" onclick="location.href='#/app/profile/{{pet.id}}'">
+      <rating value="pet.rating" max="5" readonly="true"></rating>
+       <p><button class="button button-positive" ng-click="location.href='#/app/profile/{{pet.id}}'">
       View
-  </button> 
-  <button class="button button-positive" onclick="location.href='#/app/list2/{{pet.id}}'">
+  </button>
+  <button class="button button-positive" onClick="location.href='#/app/list2/{{pet.id}}'">
       List
-  </button> 
+  </button></p>
 
     </a>
 
-     <button class="button button-block button-positive" onclick="location.href='#/app/addpet'">
+     <button class="button button-block button-positive" onClick="location.href='#/app/addpet'">
       Add Pet
   </button> 
 
