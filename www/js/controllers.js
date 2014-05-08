@@ -23,6 +23,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
 .controller('PetsCtrl', function($scope, $firebase, $cookieStore) {
 	var petRef = new Firebase("https://petaway.firebaseio.com/Pets");
 	$scope.pets = $firebase(petRef);
+  $scope.rate = 3;
 
   $scope.pet_filter = function(pets) {
     $filter_type = $cookieStore.get('filter_type');
@@ -70,11 +71,6 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
     console.log('hello');
     $location.path("/app/book/" + $stateParams.petId);
   }
-
-  $scope.tabs = [
-    { title:'Dynamic Title 1', content:'Dynamic content 1' },
-    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-  ];
 
 })
 
@@ -154,8 +150,24 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
      
 })
 
-.controller('RateCtrl', function($scope){
-  $scope.rate=0;
+
+.controller('RateCtrl', function($scope) {
+  $scope.rate1 = 0;
+  $scope.rateq = 0;
+  $scope.max = 5;
+  $scope.isReadonly = false;
+
+  $scope.onLeave = function(value){
+    $scope.rate = value;
+  }
+
+  $scope.setVal1 = function(value){
+    $scope.rate1 = value;
+  }
+
+  $scope.setVal2 = function(value){
+    $scope.rate2 = value;
+  }
 })
 
 .controller('ListCtrl', function($scope, $firebase, $location, $window) {
