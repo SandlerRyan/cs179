@@ -30,7 +30,7 @@
       <img ng-src={{pet.img_url}} alt="no image">
       <h2>{{pet.name}}</h2>
       <rating value="pet.rating" max="5" readonly="true"></rating>
-      <p>Booked on April 9, 3:00-4:00 pm ($15)</p>
+      <p>Booked on April 9, 3:00-4:00 pm (${{pet.price}})</p>
       <button class="button button-positive" onClick="location.href='#/app/book/1'">
           Re-Book
       </button>
