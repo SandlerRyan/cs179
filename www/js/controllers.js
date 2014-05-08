@@ -27,7 +27,7 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   $scope.pet_filter = function(pets) {
     $filter_type = $cookieStore.get('filter_type');
     var result = {};
-    if ($filter_type) {
+    if ($filter_type && $filter_type != 'All') {
       angular.forEach(pets, function(value,key) {
         if (value.type == $filter_type.toLowerCase()) {
             result[key] = value;
@@ -42,10 +42,12 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   }
 
 })
+
 .controller('FiltCtrl', function($scope, $firebase, $stateParams, $location, $cookieStore) {
  
-  $scope.filter = function(type) {
+  $scope.filter = function(type, cost) {
     $cookieStore.put('filter_type', type);
+    $cookieStore.put('filter_cost', cost);
     $location.path("/app/home");
   }
 })
@@ -63,13 +65,10 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   var petRef = new Firebase("https://petaway.firebaseio.com/Pets/" + $stateParams.petId);
   $scope.pet = $firebase(petRef);
 
-  // var id = ref.name()
-  // $location.path("/app/list2/" + id);
-
 
   $scope.book = function() {
     console.log('hello');
-    $location.path("/app/book/1");
+    $location.path("/app/book/" + $stateParams.petId);
   }
 
   $scope.tabs = [
@@ -157,9 +156,9 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
 
 .controller('RateCtrl', function($scope){
   $scope.rate=0;
-}
+})
 
-.controller('ListCtrl', function($scope, $firebase, $location) {
+.controller('ListCtrl', function($scope, $firebase, $location, $window) {
 
   //var petRef = new Firebase("https://petaway.firebaseio.com/Available_pets");
   //$scope.pets = $firebase(petRef);
@@ -177,13 +176,15 @@ angular.module('starter.controllers', ["firebase","ui.bootstrap", 'ngCookies'])
   $scope.pets = $firebase(petRef);
 
   $scope.newPet = function(pet) {
-    if (pet.name) {
-      var ref = petRef.push(pet);
-    }
-    else{
-      alert("Please fill in all required");
-    }
+    // if (pet.name == null) {
+    //   $window.alert("Please fill in all required");
+    //   console.log("hello")
+    // }
+    // else{
+    //   var ref = petRef.push(pet);
+    // }
     
+    var ref = petRef.push(pet);
     var id = ref.name()
     $location.path("/app/list2/" + id);
   }

@@ -37,15 +37,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase','ui.bootst
       }
     })
 
-    .state('app.filtered', {
-      url: "/filtered/type/:type/",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/home.html",
-          controller: 'FiltedCtrl'
-        }
-      }
-    })
 
     .state('app.list', {
       url: "/list",
