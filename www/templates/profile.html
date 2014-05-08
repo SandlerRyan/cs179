@@ -11,7 +11,22 @@
 
 	  <div class="item item-body">
 	    <img class="full-image" src='img/bulldog.jpg'>
+ <div class="row">
+ 	<div class="col">
+ 		<div align="middle">
+ 			<h3>Pet Rating</h3>
+	    	<rating ng-model="rate" value="3.3" max="5" readonly="true"></rating>
+	    </div>
+	</div>
+	<div class="col">
+		<div align="middle">
+ 			<h3>Owner Rating</h3>
+	    	<rating ng-model="rate" value="3.7" max="5" readonly="true"></rating>
+	    </div>
+	</div>
 	    <p>
+	    	
+	    </div>
 	      <ol class="inside">
 	      	<li type="circle"> <b>Breed:</b> {{pet.breed}} </li>
 	      	<li type="circle"> <b>Age:</b> {{pet.age}}</li>
