@@ -15,11 +15,9 @@
 	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pet_filter(pets)" href="#/app/profile/{{id}}">
 	      <img ng-src={{pet.img_url}} alt="no image">
 	      <h2>{{pet.name}}</h2>
-	      <p>{{pet.breed}} <br>Age: {{pet.age}}</p>
-
-	      <p>{{pet.distance}}</p>
-	      <rating ng-model="rate" value="3" max="5" readonly="true"></rating>
-
+	      <p>{{pet.breed}} <br>Age: {{pet.age}} <br>Cost: ${{pet.price}}/hour <br> 
+	      <rating value="pet.rating" max="5" readonly="true"></rating>
+	      </p>
 		</a>
 
 	</div>

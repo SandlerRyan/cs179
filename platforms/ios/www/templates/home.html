@@ -1,8 +1,26 @@
-<ion-view title="Search">
-  <ion-nav-buttons side="left">
-    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+<ion-view title="Available Pets">
+  <ion-nav-buttons side="right">
+    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
+  
   <ion-content class="has-header">
-    <h1>Home Page</h1>
+  	
+	 <button class="button button-block button-positive" onclick="location.href='#/app/filter'">
+  		Filter
+	</button> 
+
+
+    <div class="list">
+
+	    <a class="item item-thumbnail-left" ng-repeat="(id,pet) in pet_filter(pets)" href="#/app/profile/{{id}}">
+	      <img ng-src={{pet.img_url}} alt="no image">
+	      <h2>{{pet.name}}</h2>
+	      <p>{{pet.breed}} <br>Age: {{pet.age}} <br>Cost: ${{pet.price}}/hour <br> 
+	      <rating value="pet.rating" max="5" readonly="true"></rating>
+	      </p>
+		</a>
+
+	</div>
+
   </ion-content>
 </ion-view>
